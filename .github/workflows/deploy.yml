@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
 
+  pull_request:
+
   workflow_dispatch:
 
 permissions:
@@ -35,4 +37,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
+        if: github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v4
