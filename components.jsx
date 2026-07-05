@@ -931,7 +931,7 @@ function ApplyModal({ open, intent, onClose }) {
               <span className="lbl">contact channel</span>
               <input
                 name="contact"
-                type="email"
+                type="text"
                 required
                 placeholder="signal · email · matrix"
               />

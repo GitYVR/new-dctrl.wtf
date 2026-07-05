@@ -582,7 +582,7 @@ function ApplyModal({ open, intent, onClose }) {
         {!submitted ? (
           <form className="modal-form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
             <label><span className="lbl">handle / name</span><input type="text" required placeholder="satoshi.eth" /></label>
-            <label><span className="lbl">contact channel</span><input type="email" required placeholder="signal · email · matrix" /></label>
+            <label><span className="lbl">contact channel</span><input               type="text" required placeholder="signal · email · matrix" /></label>
             {intent === "event" && (
               <label><span className="lbl">event_type · headcount</span><input type="text" placeholder="hack night · ~40" /></label>
             )}
