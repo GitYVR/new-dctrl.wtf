@@ -203,7 +203,6 @@ function Typewriter({
 
 // ─────────────── Hero ───────────────
 const CTA_OPTIONS = [
-  { key: "desk", label: "Dedicated desk" },
   { key: "membership", label: "Membership" },
   { key: "event", label: "Host an event" },
   { key: "reach", label: "Send signal" },
@@ -231,7 +230,7 @@ function Hero({ onApply, intent, setIntent }) {
                   "hackerspace",
                   "clubhouse",
                   "makerspace",
-                  "coworking space",
+                  "coworking hub",
                   "eventspace",
                 ]}
               />
@@ -264,17 +263,23 @@ function Hero({ onApply, intent, setIntent }) {
               ))}
             </div>
             <div className="apply-row">
-              <button className="apply-btn" onClick={() => onApply(intent)}>
+              <button
+                className="apply-btn"
+                onClick={() =>
+                  intent === "membership"
+                    ? window.open("https://join.dctrl.wtf", "_blank")
+                    : onApply(intent)
+                }
+              >
                 {intent === "reach"
                   ? "Send signal"
                   : intent === "event"
                     ? "Pitch the event"
-                    : "Submit request"}
+                    : "Join"}
                 <span className="arrow">▸</span>
               </button>
               <span className="apply-helper">
-                {intent === "desk" && "24/7 access · From $480/mo"}
-                {intent === "membership" && "Hot desks + lounge · From $220/mo"}
+                {intent === "membership" && "join.dctrl.wtf"}
                 {intent === "event" && "Talks · demos · hackathons · ≤80 ppl"}
                 {intent === "reach" && "Press · partnerships · just curious"}
               </span>
@@ -410,14 +415,42 @@ window.CTA_OPTIONS = CTA_OPTIONS;
 
 // ─────────────── History ───────────────
 const NOTABLE = [
-  { name: "Vitalik Buterin", role: "Co-founder, Ethereum", x: "https://x.com/VitalikButerin" },
-  { name: "Andreas Antonopoulos", role: "Bitcoin educator", x: "https://x.com/aantonop" },
-  { name: "Erik Voorhees", role: "ShapeShift / Venice.AI", x: "https://x.com/ErikVoorhees" },
-  { name: "Jacob Steeves", role: "Co-founder, Bittensor", x: "https://x.com/const_reborn" },
+  {
+    name: "Vitalik Buterin",
+    role: "Co-founder, Ethereum",
+    x: "https://x.com/VitalikButerin",
+  },
+  {
+    name: "Andreas Antonopoulos",
+    role: "Bitcoin educator",
+    x: "https://x.com/aantonop",
+  },
+  {
+    name: "Erik Voorhees",
+    role: "ShapeShift / Venice.AI",
+    x: "https://x.com/ErikVoorhees",
+  },
+  {
+    name: "Jacob Steeves",
+    role: "Co-founder, Bittensor",
+    x: "https://x.com/const_reborn",
+  },
   { name: "0xMaki", role: "SushiSwap", x: "https://x.com/0xMaki" },
-  { name: "Witek Radomski", role: "Founder, Enjin", x: "https://x.com/witekradomski" },
-  { name: "Peter Rizun", role: "Bitcoin Unlimited", x: "https://x.com/PeterRizun" },
-  { name: "Ken Sim", role: "Mayor of Vancouver", x: "https://x.com/KenSimCity" },
+  {
+    name: "Witek Radomski",
+    role: "Founder, Enjin",
+    x: "https://x.com/witekradomski",
+  },
+  {
+    name: "Peter Rizun",
+    role: "Bitcoin Unlimited",
+    x: "https://x.com/PeterRizun",
+  },
+  {
+    name: "Ken Sim",
+    role: "Mayor of Vancouver",
+    x: "https://x.com/KenSimCity",
+  },
 ];
 
 function History() {
@@ -431,8 +464,8 @@ function History() {
           </h2>
         </div>
         <p className="section-sub">
-          Twelve years deep. New chapter on West Hastings — same fire, same
-          loud opinions, more room to grow.
+          Twelve years deep. New chapter on West Hastings — same fire, same loud
+          opinions, more room to grow.
         </p>
       </div>
 
@@ -490,7 +523,23 @@ function History() {
               {NOTABLE.map((p, i) => (
                 <li key={i}>
                   <span className="notable-name">{p.name}</span>
-                  <span className="notable-role">{p.role}{p.x ? <>{" "}— <a href={p.x} className="notable-handle" target="_blank" rel="noopener noreferrer">@{p.x.split("/").pop()}</a></> : null}</span>
+                  <span className="notable-role">
+                    {p.role}
+                    {p.x ? (
+                      <>
+                        {" "}
+                        —{" "}
+                        <a
+                          href={p.x}
+                          className="notable-handle"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          @{p.x.split("/").pop()}
+                        </a>
+                      </>
+                    ) : null}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -500,10 +549,10 @@ function History() {
             <div className="callout-tag">// 328_W_HASTINGS · NEW_CHAPTER</div>
             <p>
               For most of its life DCTRL. lived at <strong>436 W Pender</strong>{" "}
-              — concrete-walled basement that hosted thousands of talks, hacks and
-              late-night arguments. When the building was slated for demolition,
-               we packed up and moved a couple blocks away. Same community, same
-              fire, more room to grow.
+              — concrete-walled basement that hosted thousands of talks, hacks
+              and late-night arguments. When the building was slated for
+              demolition, we packed up and moved a couple blocks away. Same
+              community, same fire, more room to grow.
             </p>
             <a className="callout-link" href="#">
               Read the proposal ▸
@@ -544,13 +593,7 @@ const SPACE_SHOTS = [
     caption: "Hallway · tea wall + workstations",
     span: "wide",
     detail:
-      "The hallway between the two studios. Members keep ~20 varieties of loose-leaf tea </parameter>
-</function>
-</tool_call>
-<tool_call>
-<function=edit>
-<parameter=filePath>
-/Users/owenmurovec/projects/gityvr/new-dctrl.wtf/components-bundle.jsx The wall of monitors is a self-hosted dashboard rotation — block height, member presence, weather, on-call.",
+      "The hallway between the two studios. Members keep ~20 varieties of loose-leaf tea. The wall of monitors is a self-hosted dashboard rotation — block height, member presence, weather, on-call.",
     where: "Hallway · Studio A → B",
     when: "ongoing",
   },
@@ -828,7 +871,7 @@ function Footer() {
               Open 24/7 for members.
               <br />
               <br />
-              hello@dctrl.club
+              hello@dctrl.wtf
             </p>
             <pre className="footer-fp">
               PGP A4F2 8B91 C5D7 E3F0 6B72 9A0E 1F84 D5C2
@@ -899,13 +942,11 @@ function ApplyModal({ open, intent, onClose }) {
     }
   };
   const titles = {
-    desk: "Request a dedicated desk",
     membership: "Apply for membership",
     event: "Pitch your event",
     reach: "Send a signal",
   };
   const meta = {
-    desk: "PRIORITY 0x01 · 24/7 access · ETA 3 business days",
     membership: "PRIORITY 0x02 · hot desks + lounge · ETA 5 business days",
     event: "PRIORITY 0x03 · talks / hacks / demos · ETA 2 business days",
     reach: "PRIORITY 0x04 · open channel",
@@ -949,16 +990,6 @@ function ApplyModal({ open, intent, onClose }) {
                   name="event_type"
                   type="text"
                   placeholder="hack night · ~40"
-                />
-              </label>
-            )}
-            {intent === "desk" && (
-              <label>
-                <span className="lbl">project / what are you building</span>
-                <input
-                  name="project"
-                  type="text"
-                  placeholder="rollup, agent, zine, anything"
                 />
               </label>
             )}

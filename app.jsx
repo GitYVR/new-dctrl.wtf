@@ -65,8 +65,7 @@ function App() {
     "accent": "orange",
     "scanlines": false,
     "halftone": true,
-    "punkCursor": true,
-    "marquee": true
+    "punkCursor": true
   }/*EDITMODE-END*/;
 
   const [t, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
@@ -82,19 +81,10 @@ function App() {
     body.classList.toggle("has-punk-cursor", !!t.punkCursor);
   }, [t.theme, t.accent, t.scanlines, t.halftone, t.punkCursor]);
 
-  const tickerItems = [
-    "DOOR_OPEN", "MEMBER_RUN", "NON_PROFIT_SOCIETY",
-    "Cypherpunks write code", "Cypherpunks pay rent",
-    "REWARD: A space that outlives the cycle",
-    "Live talks Thu 7pm", "We host. We don't pitch.",
-    "All talks recorded · YouTube next morning",
-  ];
-
   return (
     <div className="page">
       <PunkCursor active={!!t.punkCursor} accent={ACCENT_HEX[t.accent] || ACCENT_HEX.orange} />
       {window.StatusBar ? <window.StatusBar/> : null}
-      {t.marquee && window.Marquee ? <window.Marquee items={tickerItems}/> : null}
       <div className="container">
         {window.Nav ? <window.Nav onApply={open}/> : null}
         {window.Hero ? <window.Hero onApply={open} intent={intent} setIntent={setIntent}/> : null}
@@ -137,8 +127,6 @@ function App() {
             onChange={(v) => setTweak("scanlines", v)} />
           <window.TweakToggle label="Crosshair cursor" value={t.punkCursor}
             onChange={(v) => setTweak("punkCursor", v)} />
-          <window.TweakToggle label="Status marquee" value={t.marquee}
-            onChange={(v) => setTweak("marquee", v)} />
         </window.TweaksPanel>
       ) : null}
     </div>

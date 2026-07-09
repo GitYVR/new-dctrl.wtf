@@ -102,7 +102,6 @@ function Nav({ onApply }) {
 
 // ─────────────── Hero ───────────────
 const CTA_OPTIONS = [
-  { key: "desk",       label: "Dedicated desk" },
   { key: "membership", label: "Membership" },
   { key: "event",      label: "Host an event" },
   { key: "reach",      label: "Send signal" },
@@ -148,13 +147,19 @@ function Hero({ onApply, intent, setIntent }) {
               ))}
             </div>
             <div className="apply-row">
-              <button className="apply-btn" onClick={() => onApply(intent)}>
-                {intent === "reach" ? "Send signal" : intent === "event" ? "Pitch the event" : "Submit request"}
+              <button
+                className="apply-btn"
+                onClick={() =>
+                  intent === "membership"
+                    ? window.open("https://join.dctrl.wtf", "_blank")
+                    : onApply(intent)
+                }
+              >
+                {intent === "reach" ? "Send signal" : intent === "event" ? "Pitch the event" : "Apply ▸"}
                 <span className="arrow">▸</span>
               </button>
               <span className="apply-helper">
-                {intent === "desk"       && "24/7 access · From $480/mo"}
-                {intent === "membership" && "Hot desks + lounge · From $220/mo"}
+                {intent === "membership" && "join.dctrl.wtf"}
                 {intent === "event"      && "Talks · demos · hackathons · ≤80 ppl"}
                 {intent === "reach"      && "Press · partnerships · just curious"}
               </span>
@@ -517,7 +522,7 @@ function Footer() {
           <div>
             <p className="footer-tagline">
               328 W Hastings St<br/>Vancouver, BC · V6B 1L1<br/>Open 24/7 for members.<br/><br/>
-              hello@dctrl.club
+              hello@dctrl.wtf
             </p>
             <pre className="footer-fp">PGP A4F2 8B91 C5D7 E3F0
 6B72 9A0E 1F84 D5C2</pre>
@@ -558,13 +563,11 @@ function ApplyModal({ open, intent, onClose }) {
   useEffect(() => { if (open) setSubmitted(false); }, [open, intent]);
   if (!open) return null;
   const titles = {
-    desk:       "Request a dedicated desk",
     membership: "Apply for membership",
     event:      "Pitch your event",
     reach:      "Send a signal",
   };
   const meta = {
-    desk:       "PRIORITY 0x01 · 24/7 access · ETA 3 business days",
     membership: "PRIORITY 0x02 · hot desks + lounge · ETA 5 business days",
     event:      "PRIORITY 0x03 · talks / hacks / demos · ETA 2 business days",
     reach:      "PRIORITY 0x04 · open channel",
@@ -585,9 +588,6 @@ function ApplyModal({ open, intent, onClose }) {
             <label><span className="lbl">contact channel</span><input               type="text" required placeholder="signal · email · matrix" /></label>
             {intent === "event" && (
               <label><span className="lbl">event_type · headcount</span><input type="text" placeholder="hack night · ~40" /></label>
-            )}
-            {intent === "desk" && (
-              <label><span className="lbl">project / what are you building</span><input type="text" placeholder="rollup, agent, zine, anything" /></label>
             )}
             {intent === "membership" && (
               <label><span className="lbl">vouch · who do you know</span><input type="text" placeholder="member name · or 'walked in'" /></label>
