@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-theme="" data-accent="">
+<head>
+  <meta charset="utf-8" />
+  <title>dctrl. — cypherpunk coworking, gastown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Print-friendly overrides */
+    @page { size: A4 portrait; margin: 12mm; }
+    @media print {
+      html, body {
+        background: #0A0A0A !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      /* Hide live, sticky and decorative chrome that doesn't make sense in print */
+      .statusbar, .marquee, .twk-panel, .modal-backdrop { display: none !important; }
+      /* Cancel sticky positions */
+      [class*="sticky"], .nav, .statusbar { position: static !important; }
+      /* Scanline overlay off */
+      body.scanlines::before { display: none !important; }
+      /* Section page-breaks */
+      .section, section.block { break-inside: avoid-page; page-break-inside: avoid; }
+      .section { padding: 32px 0 40px !important; }
+      .hero { padding: 24px 0 40px !important; break-after: page; }
+      #manifesto, #history, #space, #events, #friends, #talks, #visit { break-before: page; }
+      /* Prevent enormous display type from blowing past one page */
+      .hero h1.display { font-size: 64px !important; }
+      .section-title { font-size: 56px !important; }
+      .logo.huge { font-size: 96px !important; }
+      /* Photos */
+      .hero-photo { max-height: 480px !important; break-inside: avoid; }
+      .gallery .shot, .talk, .story-photo, .event-row, .logo-cell, .notable, .story-callout { break-inside: avoid; }
+      /* Hide hover-only/JS-only widgets */
+      .modal { display: none !important; }
+      /* Force gallery to render compactly */
+      .gallery { gap: 8px !important; }
+      /* Containers — full bleed margins are handled by @page */
+      .container { padding: 0 !important; max-width: 100% !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+
+  <script type="text/babel" data-presets="env,react">
+    // Wait for React app to mount, fonts to load, images to settle, then print.
+    (async () => {
+      // Wait for root to populate
+      const waitFor = (cond, timeout = 8000) => new Promise((res, rej) => {
+        const start = Date.now();
+        const tick = () => {
+          if (cond()) return res();
+          if (Date.now() - start > timeout) return res(); // continue anyway
+          requestAnimationFrame(tick);
+        };
+        tick();
+      });
+      await waitFor(() => document.querySelector('#root .page') && document.querySelectorAll('.shot').length >= 6);
+      try { await document.fonts.ready; } catch (e) {}
+      // Wait for visible images to load
+      const imgs = Array.from(document.images);
+      await Promise.all(imgs.map(img => img.complete ? null : new Promise(r => {
+        img.addEventListener('load', r, { once: true });
+        img.addEventListener('error', r, { once: true });
+      })));
+      await new Promise(r => setTimeout(r, 800));
+      window.print();
+    })();
+  </script>
+</body>
+</html>
