@@ -1,12 +1,12 @@
 // dctrl. PUNK — components
 const { useState, useEffect, useRef } = React;
 
-// ─────────────── Logo (uppercase, Figma-style) ───────────────
+// ─────────────── Logo (lowercase) ───────────────
 function Logo({ size = "lg", className = "" }) {
   return (
     <span className={`logo ${size} ${className}`}>
-      <span className="box-d">D</span>
-      <span className="rest">CTRL</span>
+      <span className="box-d">d</span>
+      <span className="rest">ctrl.</span>
     </span>
   );
 }
