@@ -1080,6 +1080,18 @@ body.scanlines::before {
   opacity: 0.6;
   margin-top: 2px;
 }
+.notable-handle {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  opacity: 0.45;
+  transition: opacity 0.15s;
+  text-decoration: none;
+}
+.notable-handle:hover {
+  opacity: 1;
+}
 
 .story-callout {
   margin: 40px 0 0;

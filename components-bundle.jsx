@@ -131,7 +131,7 @@ function Hero({ onApply, intent, setIntent }) {
           <p className="hero-lede">
             A <strong>member-run, non-profit</strong> studio on West Hastings —
             for engineers, designers, builders and the crypto-curious crowd
-            that keeps the kettle on. <strong>Funded by dues & grants, not capital.</strong>
+            that keeps the fire burning. <strong>Funded by dues & grants, not capital.</strong>
           </p>
 
           <div className="cta-block">
@@ -263,14 +263,14 @@ window.CTA_OPTIONS = CTA_OPTIONS;
 
 // ─────────────── History ───────────────
 const NOTABLE = [
-  { name: "Vitalik Buterin",      role: "Co-founder, Ethereum" },
-  { name: "Andreas Antonopoulos", role: "Bitcoin educator" },
-  { name: "Erik Voorhees",        role: "ShapeShift / Venice.AI" },
-  { name: "Jacob Steeves",        role: "Co-founder, Bittensor" },
-  { name: "0xMaki",               role: "SushiSwap" },
-  { name: "Witek Radomski",       role: "Founder, Enjin" },
-  { name: "Peter Rizun",          role: "Bitcoin Unlimited" },
-  { name: "Ken Sim",              role: "Mayor of Vancouver" },
+  { name: "Vitalik Buterin",      role: "Co-founder, Ethereum", x: "https://x.com/VitalikButerin" },
+  { name: "Andreas Antonopoulos", role: "Bitcoin educator", x: "https://x.com/aantonop" },
+  { name: "Erik Voorhees",        role: "ShapeShift / Venice.AI", x: "https://x.com/ErikVoorhees" },
+  { name: "Jacob Steeves",        role: "Co-founder, Bittensor", x: "https://x.com/const_reborn" },
+  { name: "0xMaki",               role: "SushiSwap", x: "https://x.com/0xMaki" },
+  { name: "Witek Radomski",       role: "Founder, Enjin", x: "https://x.com/witekradomski" },
+  { name: "Peter Rizun",          role: "Bitcoin Unlimited", x: "https://x.com/PeterRizun" },
+  { name: "Ken Sim",              role: "Mayor of Vancouver", x: "https://x.com/KenSimCity" },
 ];
 
 function History() {
@@ -282,7 +282,7 @@ function History() {
           <h2 className="section-title">The <span className="accent">story.</span></h2>
         </div>
         <p className="section-sub">
-          Twelve years deep. New chapter on West Hastings — same kettle,
+          Twelve years deep. New chapter on West Hastings — same fire,
           same loud opinions, more room to grow.
         </p>
       </div>
@@ -333,7 +333,7 @@ function History() {
               {NOTABLE.map((p, i) => (
                 <li key={i}>
                   <span className="notable-name">{p.name}</span>
-                  <span className="notable-role">{p.role}</span>
+                  <span className="notable-role">{p.role}{p.x ? <>{" "}— <a href={p.x} className="notable-handle" target="_blank" rel="noopener noreferrer">@{p.x.split("/").pop()}</a></> : null}</span>
                 </li>
               ))}
             </ul>
@@ -343,9 +343,9 @@ function History() {
             <div className="callout-tag">// 328_W_HASTINGS · NEW_CHAPTER</div>
             <p>
               For most of its life DCTRL. lived at <strong>436 W Pender</strong> —
-              brick-walled basement that hosted thousands of talks, hacks and late-night
+              concrete-walled basement that hosted thousands of talks, hacks and late-night
               arguments. When the building was slated for demolition, we packed up and
-              moved a few blocks west. Same community, same kettle, more room to grow.
+               moved a couple blocks away. Same community, same fire, more room to grow.
             </p>
             <a className="callout-link" href="#">Read the proposal ▸</a>
           </div>
@@ -368,7 +368,7 @@ const SPACE_SHOTS = [
     detail: "The flag has hung in every DCTRL. location since day one. The original 2013 storefront on Pender — basement vibes, fluorescent lights, the smell of coffee and toner.",
     where: "436 W Pender (original)", when: "2013–2025" },
   { key: "shotInside3", src: "assets/photos/inside-3.png",             caption: "Hallway · tea wall + workstations",  span: "wide",
-    detail: "The hallway between the two studios. Members keep ~20 varieties of loose-leaf tea and a single questionable kettle. The wall of monitors is a self-hosted dashboard rotation — block height, member presence, weather, on-call.",
+    detail: "The hallway between the two studios. Members keep ~20 varieties of loose-leaf tea. The wall of monitors is a self-hosted dashboard rotation — block height, member presence, weather, on-call.",
     where: "Hallway · Studio A → B", when: "ongoing" },
   { key: "shotInside1", src: "assets/photos/inside-1.png",             caption: "Museum of blockchain relics",        span: "",
     detail: "A small museum: a working Bitmain S1, an early ASICMiner block-erupter array, a Ledger prototype, the original whiteboard from the night ETH 2.0 was sketched out (signed by everyone in the room).",

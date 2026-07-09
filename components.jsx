@@ -246,7 +246,7 @@ function Hero({ onApply, intent, setIntent }) {
           <p className="hero-lede">
             A <strong>member-run, non-profit</strong> studio on West Hastings —
             for engineers, designers, builders and the crypto-curious crowd that
-            keeps the kettle on.{" "}
+            keeps the fire burning.{" "}
             <strong>Funded by dues & grants, not capital.</strong>
           </p>
 
@@ -326,7 +326,7 @@ function Manifesto() {
           }}
         >
           Vancouver's longest-running home for Bitcoin, crypto and decentralized
-          tech. A space, a community, and a kettle that's never off.
+          tech. A space, a community, and a fire that's always burning.
         </p>
         <div className="manifesto-grid">
           {MANIFESTO_LINES.map((line, i) => (
@@ -410,14 +410,14 @@ window.CTA_OPTIONS = CTA_OPTIONS;
 
 // ─────────────── History ───────────────
 const NOTABLE = [
-  { name: "Vitalik Buterin", role: "Co-founder, Ethereum" },
-  { name: "Andreas Antonopoulos", role: "Bitcoin educator" },
-  { name: "Erik Voorhees", role: "ShapeShift / Venice.AI" },
-  { name: "Jacob Steeves", role: "Co-founder, Bittensor" },
-  { name: "0xMaki", role: "SushiSwap" },
-  { name: "Witek Radomski", role: "Founder, Enjin" },
-  { name: "Peter Rizun", role: "Bitcoin Unlimited" },
-  { name: "Ken Sim", role: "Mayor of Vancouver" },
+  { name: "Vitalik Buterin", role: "Co-founder, Ethereum", x: "https://x.com/VitalikButerin" },
+  { name: "Andreas Antonopoulos", role: "Bitcoin educator", x: "https://x.com/aantonop" },
+  { name: "Erik Voorhees", role: "ShapeShift / Venice.AI", x: "https://x.com/ErikVoorhees" },
+  { name: "Jacob Steeves", role: "Co-founder, Bittensor", x: "https://x.com/const_reborn" },
+  { name: "0xMaki", role: "SushiSwap", x: "https://x.com/0xMaki" },
+  { name: "Witek Radomski", role: "Founder, Enjin", x: "https://x.com/witekradomski" },
+  { name: "Peter Rizun", role: "Bitcoin Unlimited", x: "https://x.com/PeterRizun" },
+  { name: "Ken Sim", role: "Mayor of Vancouver", x: "https://x.com/KenSimCity" },
 ];
 
 function History() {
@@ -431,7 +431,7 @@ function History() {
           </h2>
         </div>
         <p className="section-sub">
-          Twelve years deep. New chapter on West Hastings — same kettle, same
+          Twelve years deep. New chapter on West Hastings — same fire, same
           loud opinions, more room to grow.
         </p>
       </div>
@@ -490,7 +490,7 @@ function History() {
               {NOTABLE.map((p, i) => (
                 <li key={i}>
                   <span className="notable-name">{p.name}</span>
-                  <span className="notable-role">{p.role}</span>
+                  <span className="notable-role">{p.role}{p.x ? <>{" "}— <a href={p.x} className="notable-handle" target="_blank" rel="noopener noreferrer">@{p.x.split("/").pop()}</a></> : null}</span>
                 </li>
               ))}
             </ul>
@@ -500,10 +500,10 @@ function History() {
             <div className="callout-tag">// 328_W_HASTINGS · NEW_CHAPTER</div>
             <p>
               For most of its life DCTRL. lived at <strong>436 W Pender</strong>{" "}
-              — brick-walled basement that hosted thousands of talks, hacks and
+              — concrete-walled basement that hosted thousands of talks, hacks and
               late-night arguments. When the building was slated for demolition,
-              we packed up and moved a few blocks west. Same community, same
-              kettle, more room to grow.
+               we packed up and moved a couple blocks away. Same community, same
+              fire, more room to grow.
             </p>
             <a className="callout-link" href="#">
               Read the proposal ▸
@@ -544,7 +544,13 @@ const SPACE_SHOTS = [
     caption: "Hallway · tea wall + workstations",
     span: "wide",
     detail:
-      "The hallway between the two studios. Members keep ~20 varieties of loose-leaf tea and a single questionable kettle. The wall of monitors is a self-hosted dashboard rotation — block height, member presence, weather, on-call.",
+      "The hallway between the two studios. Members keep ~20 varieties of loose-leaf tea </parameter>
+</function>
+</tool_call>
+<tool_call>
+<function=edit>
+<parameter=filePath>
+/Users/owenmurovec/projects/gityvr/new-dctrl.wtf/components-bundle.jsx The wall of monitors is a self-hosted dashboard rotation — block height, member presence, weather, on-call.",
     where: "Hallway · Studio A → B",
     when: "ongoing",
   },
@@ -617,7 +623,7 @@ function SpaceGallery({ onPhoto }) {
           </h2>
         </div>
         <p className="section-sub">
-          Brick, fir floors, loud opinions, and a museum of mining hardware.
+          Dark basement, loud opinions, and a museum of mining hardware.
         </p>
       </div>
       <div className="gallery">
